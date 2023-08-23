@@ -5,6 +5,7 @@ import Signin from './components/Signin';
 import Registration from './components/Registration';
 import Home from './components/Home';
 import App from './App'
+//import { Home } from './components/Home';
 export default function Routing(){
     return(
         <React.StrictMode>

@@ -1,53 +1,43 @@
-
 import React, { useEffect, useState } from 'react';
-
 import "bootstrap/dist/css/bootstrap.min.css";
-// import {Footer1} from './components/Footer1';
-// import Header from './Header';
-// import Footer from './Footer';
 import Carosel from './Carosel';
-import { Button, Card } from 'react-bootstrap';
-function Home() {
-  const [sector,setSector] = useState([]);
-   
-   const getTours =  ()=> {
-    const response =  fetch("http://localhost:8080/tour/sectors")
-    .then(response => response.json())
-    .then(res => setSector(res));
+import { Card, Row, Col } from 'react-bootstrap';
 
-    console.log(sector);
-    const data = JSON.stringify(sector);
-    console.log(data);
-   }
+function Home() {
+  const [sector, setSector] = useState([]);
+
+  const getTours = () => {
+    fetch("http://localhost:8080/tour/sectors")
+      .then(response => response.json())
+      .then(res => setSector(res));
+  }
 
   useEffect(() => {
     getTours();
-  },[]);
-    return (
-      <div>
-          
+  }, []);
 
-          <Carosel/>
-          <br />
-         
-         {
-          sector.map((sec) => (
+  return (
+    <div>
+      <Carosel />
+      <br />
+
+      <Row className="justify-content-center">
+        {sector.map(sec => (
+          <Col key={sec.id} md={4} className="mb-4">
             <Card style={{ width: '18rem' }} className='fcontainer'>
-            <Card.Img variant="top" src={sec.sectorImgPath} />
-            <Card.Body>
-              <Card.Title>{sec.sectorName} </Card.Title>  
-              <Card.Text>
-                {sec.sectorinfo}
-              </Card.Text>  
-            </Card.Body>
-          </Card>
-          )
-            )
-         }
-        
-        
-      </div>
-    );
-  }
-  
-  export default Home;
+              <Card.Img variant="top" src={sec.sectorImgPath} />
+              <Card.Body>
+                <Card.Title>{sec.sectorName}</Card.Title>
+                <Card.Text>
+                  {sec.sectorinfo}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
+  );
+}
+
+export default Home;
