@@ -5,6 +5,7 @@ import Signin from './components/Signin';
 import Registration from './components/Registration';
 import Home from './components/Home';
 import App from './App'
+import SubSector from './components/SubSector';
 //import { Home } from './components/Home';
 export default function Routing(){
     return(
@@ -17,6 +18,7 @@ export default function Routing(){
           <Route path="/Search" element={<Search />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Registration" element={<Registration/>} />
+          <Route path="/SubSector/:id" element={<SubSector/>} / >
         </Route>
       </Routes>
 
